@@ -27,7 +27,7 @@
   },
   "scripts": {
     "build": "webpack",
-    "production": "webpack -p",
+    "production": "webpack --progress -p",
     "start": "webpack-dev-server"
   }
 }

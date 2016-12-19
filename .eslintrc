@@ -16,7 +16,7 @@
 		"brace-style": [2, "1tbs"],
 		"comma-style": 2,
 		"eol-last": 0,
-		"indent": [2, 2, {"SwitchCase": 1}],
+		"indent": [2, 2, {"SwitchCase": 1, "VariableDeclarator": 2}],
 		"jsx-quotes": 2,
 		"no-console": 0,
 		"no-else-return": 2,
