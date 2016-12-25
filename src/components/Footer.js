@@ -1,6 +1,14 @@
 import React from 'react';
 
-class Footer extends React.Component {
+const defaultProps = {
+  hints: {
+    ready: 'Get ready',
+    memorize: 'Memorize',
+    recall: 'Recall'
+  }
+};
+
+export default class Footer extends React.Component {
   render() {
     return (
       <div className="footer">
@@ -12,12 +20,4 @@ class Footer extends React.Component {
   }
 }
 
-Footer.defaultProps = {
-  hints: {
-    ready: 'Get ready',
-    memorize: 'Memorize',
-    recall: 'Recall'
-  }
-};
-
-export default Footer;
+Footer.defaultProps = defaultProps;

@@ -4,7 +4,7 @@ import React from 'react';
 import Row from './Row';
 import sampleSize from 'lodash/sampleSize';
 
-class Game extends React.Component {
+export default class Game extends React.Component {
   constructor(props) {
     super(props);
 
@@ -48,5 +48,3 @@ class Game extends React.Component {
     );
   }
 }
-
-export default Game;

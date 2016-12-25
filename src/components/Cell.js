@@ -1,6 +1,6 @@
 import React from 'react';
 
-class Cell extends React.Component {
+export default class Cell extends React.Component {
   isActive() {
     return this.props.activeCells.indexOf(this.props.id) !== -1;
   }
@@ -18,5 +18,3 @@ class Cell extends React.Component {
     );
   }
 }
-
-export default Cell;
