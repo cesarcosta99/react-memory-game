@@ -12,6 +12,7 @@ export default class Container extends React.Component {
   createNewGame() {
     this.setState({gameId: this.state.gameId + 1});
   }
+
   render() {
     return (
       <div>
