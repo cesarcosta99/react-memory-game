@@ -30,9 +30,7 @@ export default class Cell extends React.Component {
     className += ' guess-' + this.guessState();
 
     return (
-      <div className={className} onClick={this.handleClick.bind(this)}>
-        {this.props.id}
-      </div>
+      <div className={className} onClick={this.handleClick.bind(this)}>&nbsp;</div>
     );
   }
 }

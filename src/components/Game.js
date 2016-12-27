@@ -61,6 +61,7 @@ export default class Game extends React.Component {
 
   finishGame(gameState) {
     clearInterval(this.playTimer);
+    this.props.updateGameState(gameState);
     return gameState;
   }
 
