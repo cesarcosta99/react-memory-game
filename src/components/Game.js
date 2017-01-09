@@ -30,7 +30,8 @@ export default class Game extends React.Component {
     this.state = {
       gameState: 'ready',
       wrongGuesses: [],
-      correctGuesses: []
+      correctGuesses: [],
+      score: 0
     }
   }
 
@@ -59,18 +60,26 @@ export default class Game extends React.Component {
     });
   }
 
-  finishGame(gameState) {
+  finishGame(gameState, score) {
     clearInterval(this.playTimer);
-    this.props.updateGameState(gameState);
+    if (score) {
+      this.props.updateGameState(gameState, score);
+    } else {
+      this.props.updateGameState(gameState);
+    }
     return gameState;
   }
 
   recordGuess({cellId, userGuessIsCorrect}) {
-    let {wrongGuesses, correctGuesses, gameState} = this.state;
+    let {wrongGuesses, correctGuesses, gameState, score} = this.state;
     if (userGuessIsCorrect) {
       correctGuesses.push(cellId);
       if (correctGuesses.length === this.props.activeCellsCount) {
-        gameState = this.finishGame('won');
+        score = 3 - wrongGuesses.length;
+        if (this.secondsRemaining >= 5) {
+          score *= 2;
+        }
+        gameState = this.finishGame('won', score);
       }
     } else {
       wrongGuesses.push(cellId);
@@ -78,18 +87,21 @@ export default class Game extends React.Component {
         gameState = this.finishGame('lost');
       }
     }
-    this.setState({correctGuesses, wrongGuesses, gameState});
+    this.setState({correctGuesses, wrongGuesses, gameState, score});
   }
 
   render() {
     let showActiveCells = ["memorize", "lost"].indexOf(this.state.gameState) >= 0;
     return (
       <div>
+        <div className="score">Game score: {this.state.score}</div>
+        <div className="total-score">Total score: {this.props.totalScore}</div>
         <div className="grid">
           {this.matrix.map((row, rowIndex) => (
             <Row key={rowIndex}>
               {row.map((cellId) =>
-                <Cell key={cellId} id={cellId} showActiveCells={showActiveCells} activeCells={this.activeCells} recordGuess={this.recordGuess.bind(this)} {...this.state} />)
+                <Cell key={cellId} id={cellId} showActiveCells={showActiveCells} activeCells={this.activeCells}
+                  recordGuess={this.recordGuess.bind(this)} {...this.state} />)
               }
             </Row>
           ))}

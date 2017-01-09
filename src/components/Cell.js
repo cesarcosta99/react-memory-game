@@ -29,8 +29,13 @@ export default class Cell extends React.Component {
     }
     className += ' guess-' + this.guessState();
 
+    const cellStyle = {
+      height: 500 / this.props.activeCells.length,
+      width: 500 / this.props.activeCells.length,
+    };
+
     return (
-      <div className={className} onClick={this.handleClick.bind(this)}>&nbsp;</div>
+      <div className={className} style={cellStyle} onClick={this.handleClick.bind(this)}>&nbsp;</div>
     );
   }
 }
